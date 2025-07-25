@@ -1,16 +1,7 @@
 import { Router } from 'express';
+import { login } from '../controllers/auth.controller.js';
+
 const router = Router();
-
-// POST /auth/login
-router.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  // Validación fake por ahora
-  if (email === 'admin@admin.com' && password === '123456') {
-    res.json({ token: 'FAKE-JWT-TOKEN' });
-  } else {
-    res.status(401).json({ error: 'Credenciales inválidas' });
-  }
-});
-
+router.post('/login', login);
 export default router;
+

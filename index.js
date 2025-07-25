@@ -6,25 +6,25 @@ import dotenv from 'dotenv';
 import productsRoutes from './routes/products.routes.js';
 import authRoutes from './routes/auth.routes.js';
 
-app.use('/api/products', productsRoutes);
-app.use('/auth', authRoutes);
-
-
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
+// ✅ Middlewares: SIEMPRE antes de las rutas
 app.use(cors());
 app.use(bodyParser.json());
 
-// Rutas de ejemplo (se reemplazan luego)
+// ✅ Rutas
+app.use('/api/products', productsRoutes);
+app.use('/auth', authRoutes);
+
+// Ruta raíz (opcional)
 app.get('/', (req, res) => {
   res.send('API de productos corriendo correctamente');
 });
 
-// Middleware 404 para rutas no encontradas
+// Middleware para 404
 app.use((req, res, next) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
@@ -33,3 +33,4 @@ app.use((req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
