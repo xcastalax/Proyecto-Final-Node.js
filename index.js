@@ -3,6 +3,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
+import productsRoutes from './routes/products.routes.js';
+import authRoutes from './routes/auth.routes.js';
+
+app.use('/api/products', productsRoutes);
+app.use('/auth', authRoutes);
+
+
 dotenv.config();
 
 const app = express();
